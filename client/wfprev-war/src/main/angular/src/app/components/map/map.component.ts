@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { ResizablePanelComponent } from 'src/app/components/resizable-panel/resizable-panel.component';
 import * as L from 'leaflet';
+import { MapService } from 'src/app/services/map.service';
 
 @Component({
   selector: 'app-map',
@@ -20,6 +21,7 @@ export class MapComponent implements AfterViewInit{
 
   constructor(    
     protected cdr: ChangeDetectorRef,
+    private mapService: MapService
   ) {}
 
   ngAfterViewInit(): void {
@@ -38,6 +40,8 @@ export class MapComponent implements AfterViewInit{
     // Add a tile layer to the map (this is the OpenStreetMap layer)
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     }).addTo(this.map);
+
+    this.mapService.setMap(this.map);
   }
 
   onPanelResized(): void {

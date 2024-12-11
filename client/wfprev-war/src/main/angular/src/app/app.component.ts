@@ -5,6 +5,7 @@ import { CreateNewProjectDialogComponent } from 'src/app/components/create-new-p
 import { ResourcesRoutes } from 'src/app/utils';
 import { AppConfigService } from 'src/app/services/app-config.service';
 import { TokenService } from 'src/app/services/token.service';
+import { MapService } from 'src/app/services/map.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent {
     protected router: Router,
     protected appConfigService: AppConfigService,
     protected tokenService: TokenService,
-    protected dialog: MatDialog
+    protected dialog: MatDialog,
+    protected mapService: MapService,
   ) {
   }
 

@@ -69,3 +69,21 @@ body {
     }
   }
 
+  .custom-marker-cluster {
+    background-color: #5595D9;
+    border: 1px solid #1B4C8B;
+    border-radius: 50%; /* Make it circular */
+    width: 40px; /* Size of the cluster marker */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Text color */
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .custom-marker-cluster span {
+    line-height: 40px; /* Center the number vertically */
+  }
