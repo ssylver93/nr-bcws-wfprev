@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, Input, ViewChild } from '@angular/core';
 import { ResizablePanelComponent } from 'src/app/components/resizable-panel/resizable-panel.component';
 import * as L from 'leaflet';
 import { MapService } from 'src/app/services/map.service';
@@ -11,7 +11,21 @@ import { MapService } from 'src/app/services/map.service';
   styleUrl: './map.component.scss'
 })
 export class MapComponent implements AfterViewInit{
+  @ViewChild('mapContainer') mapContainer: any;
+  mapConfig = {
+    type: 'esri-tiled',
+    id: 'bc-hillshade',
+    title: 'BC Hillshade',
+    isQueryable: false,
+    attribution: 'Copyright 117 DataBC, Government of British Columbia',
+    serviceUrl:
+      'https://tiles.arcgis.com/tiles/B6yKvIZqzuOr0jBR/arcgis/rest/services/Canada_Hillshade/MapServer',
+    opacity: 1.0,
+  }
+
   private map: L.Map | undefined;
+
+  
   
   panelContent: string = `
     The goal of the BC Wildfire Service (BCWS) Prevention Program is to reduce the negative impacts of wildfire on public safety, property, the environment and the economy using the seven disciplines of the FireSmart program.
@@ -29,6 +43,15 @@ export class MapComponent implements AfterViewInit{
   }
 
   private initMap(): void {
+    const self = this;
+    const mapConfig = this.clone(this.mapConfig);
+    this.mapService.createSMK({
+      id: 0,
+      // containerSel: self.mapContainer.nativeElement,
+      config: mapConfig,
+      // toggleAccordion: self.toggleAccordion,
+      // fullScreen: self.fullScreen,
+    })
     // Initialize the map and set its view
     this.map = L.map('map');
     const bcBounds: L.LatLngBoundsExpression = [
@@ -49,5 +72,9 @@ export class MapComponent implements AfterViewInit{
       this.map.invalidateSize();  // Inform Leaflet to recalculate map size
       this.cdr.markForCheck();
     }
+  }
+
+  clone(o: any) {
+    return JSON.parse(JSON.stringify(o));
   }
 }

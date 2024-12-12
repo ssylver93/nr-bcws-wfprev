@@ -23,7 +23,7 @@
     "@angular/platform-browser": "18.2.3",
     "@angular/platform-browser-dynamic": "18.2.3",
     "@angular/router": "18.2.3",
-    "@qqnluaq/smk": "^1.0.16001",
+    "@qqnluaq/smk": "=1.0.16001",
     "@types/leaflet": "1.9.12",
     "angular-oauth2-oidc": "17.0.2",
     "angular2-uuid": "1.1.1",
